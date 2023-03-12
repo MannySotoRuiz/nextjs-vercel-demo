@@ -4,7 +4,7 @@ import Image from "next/image";
 //     type MovieInfo = {
 //         adult: boolean;
 //         backdrop_path: string;
-//         genre_ids: [];
+//         genre_ids: number[];
 //         id: number;
 //         original_language: string;
 //         original_title: string;
@@ -26,8 +26,9 @@ import Image from "next/image";
 //     // each movie, get their id and then go through each one of them and render them out
 // }
 
-export default async function MovieDetail({ params }) {
-    console.log(params);
+type MovieProp = { params: { movie: string } };
+
+export default async function MovieDetail({ params }: MovieProp) {
     const { movie } = params;
     const imgPath: string = "https://image.tmdb.org/t/p/original";
     const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.API_KEY}`, { next: { revalidate: 60 } });

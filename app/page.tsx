@@ -4,10 +4,12 @@ export default async function Home() {
   const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`);
   const res = await data.json();
 
+  console.log(res.results);
+
   type MovieInfo = {
     adult: boolean;
     backdrop_path: string;
-    genre_ids: [];
+    genre_ids: number[];
     id: number;
     original_language: string;
     original_title: string;
